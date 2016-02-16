@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 10:10:16 by nmougino          #+#    #+#              #
-#    Updated: 2016/02/04 17:45:05 by alhote           ###   ########.fr        #
+#    Updated: 2016/02/16 16:07:20 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ SRC = ft_atoi.c \
 		ft_swapint.c \
 		ft_tolower.c \
 		ft_toupper.c \
+		get_next_line.c \
 
 CFLAGS = -Wall -Wextra -Werror
 

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 14:21:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/15 21:51:28 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/16 15:41:39 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,18 @@ static void		c1(t_segment *seg, t_world *w)
 
 int				draw_segment(t_segment *seg, t_world *w)
 {
-	safe_pixel_put(w, seg->p[0]->x2d, seg->p[0]->y2d, seg->color);
-	if (fabs(seg->p[1]->x2d - seg->p[0]->x2d) >
-	fabs(seg->p[1]->y2d - seg->p[0]->y2d))
+	if (seg->p[0]->enable && seg->p[1]->enable)
 	{
-		c1(seg, w);
-	}
-	else
-	{
-		c2(seg, w);
+		safe_pixel_put(w, seg->p[0]->x2d, seg->p[0]->y2d, seg->color);
+		if (fabs(seg->p[1]->x2d - seg->p[0]->x2d) >
+		fabs(seg->p[1]->y2d - seg->p[0]->y2d))
+		{
+			c1(seg, w);
+		}
+		else
+		{
+			c2(seg, w);
+		}
 	}
 	return (0);
 }

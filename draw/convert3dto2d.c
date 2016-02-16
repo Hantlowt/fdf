@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:46:19 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/16 15:31:24 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/16 15:43:05 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int				project3dto2d_point(t_point *p, t_camera *cam, t_world *w)
 	(p->y3d - cam->y3d) - sinf(cam->panz * pi / 180) * (p->x3d - cam->x3d));
 	p->x2d = ((cam->vz / (d[2])) * d[0] + cam->vx) * cam->zoom + w->sx / 2;
 	p->y2d = ((cam->vz / (d[2])) * d[1] + cam->vy) * cam->zoom + w->sy / 2;
+	p->enable = (d[2] > 0 ? 0 : 1);
 	return (1);
 }

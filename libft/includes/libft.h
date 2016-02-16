@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmougino <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 16:46:12 by nmougino          #+#    #+#             */
-/*   Updated: 2015/12/17 01:59:14 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/02/16 16:06:24 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void				ft_swapchar(char *a, char *b);
 void				ft_swapint(int *a, int *b);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+int					get_next_line(int const fd, char **line);
 #endif

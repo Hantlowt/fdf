@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:21:00 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/16 14:17:27 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/16 17:19:10 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ t_world			*init_world(int screen_x, int screen_y, void *mlx, void *win)
 	result = (t_world*)malloc(sizeof(t_world));
 	result->sx = screen_x;
 	result->sy = screen_y;
+	result->centerx = 0.0;
+	result->centery = 0.0;
+	result->centerz = 0.0;
 	result->mlx = mlx;
 	result->win = win;
 	result->cam = init_camera(0.0, 0.0, 0.0);
@@ -76,25 +79,26 @@ int				draw_world(t_world *w)
 int				rotate(t_world *w, double rx, double ry, double rz)
 {
 	t_point	*cur;
-	double	tx;
-	double	ty;
-	double	tz;
+	double	t[3];
 
 	cur = w->p;
 	while (cur)
 	{
-		tx = cur->x3d * cosf(rz) - cur->y3d * sin(rz);
-		ty = cur->x3d * sin(rz) + cur->y3d * cos(rz);
-		cur->x3d = tx;
-		cur->y3d = ty;
-		tz = cur->z3d * cosf(ry) - cur->x3d * sin(ry);
-		tx = cur->z3d * sin(ry) + cur->x3d * cos(ry);
-		cur->z3d = tz;
-		cur->x3d = tx;
-		ty = cur->y3d * cosf(rx) - cur->z3d * sin(rx);
-		tz = cur->y3d * sin(rx) + cur->z3d * cos(rx);
-		cur->y3d = ty;
-		cur->z3d = tz;
+		cur->x3d -= w->centerx;
+		cur->y3d -= w->centery;
+		cur->z3d -= w->centerz;
+		t[0] = cur->x3d * cosf(rz) - cur->y3d * sinf(rz);
+		t[1] = cur->x3d * sinf(rz) + cur->y3d * cosf(rz);
+		cur->x3d = t[0] + w->centerx;
+		cur->y3d = t[1] + w->centery;
+		t[2] = cur->z3d * cosf(ry) - cur->x3d * sinf(ry);
+		t[0] = cur->x3d * cosf(ry) + cur->z3d * sinf(ry);
+		cur->z3d = t[2] + w->centerz;
+		cur->x3d = t[0] + w->centerx;
+		t[1] = cur->y3d * cosf(rx) - cur->z3d * sinf(rx);
+		t[2] = cur->y3d * sinf(rx) + cur->z3d * cosf(rx);
+		cur->y3d = t[1] + w->centery;
+		cur->z3d = t[2] + w->centerz;
 		cur = cur->prev;
 	}
 	return (1);

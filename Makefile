@@ -6,18 +6,17 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/19 15:42:18 by alhote            #+#    #+#              #
-#    Updated: 2016/02/08 16:45:34 by alhote           ###   ########.fr        #
+#    Updated: 2016/02/16 17:28:28 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 CFLAGS       = -Wall -Wextra -Werror
-INC_DIR = -Iincludes \
-			-Ilibft/includes \
+INC_DIR = -Ilibft/includes \
 			-Idraw \
 
-SRCS = main.c
+SRCS = main.c fdf.c
 OBJECTS = $(SRCS:.c=.o)
 
 # Rules

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:40:12 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/16 15:29:49 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/16 17:03:30 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_point
 	double				x3d;
 	double				y3d;
 	double				z3d;
+	char				enable;
 	int					color;
 	struct s_point		*next;
 	struct s_point		*prev;
@@ -62,6 +63,9 @@ typedef struct	s_world
 	void		*win;
 	int			sx;
 	int			sy;
+	double		centerx;
+	double		centery;
+	double		centerz;
 	t_camera	*cam;
 	t_point		*p;
 	t_segment	*seg;
