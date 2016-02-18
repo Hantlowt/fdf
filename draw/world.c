@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:21:00 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/18 16:21:25 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/18 18:32:19 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_world			*init_world(int screen_x, int screen_y, void *mlx, void *win)
 	result->centerz = 0.0;
 	result->mlx = mlx;
 	result->win = win;
+	result->h = 0.0;
 	result->cam = init_camera(0.0, 0.0, 0.0);
 	result->p = 0;
 	result->seg = 0;
@@ -40,7 +41,7 @@ int				add_point(t_world *w, double x, double y, double z)
 
 int				add_segment_with_last_pts(t_world *w)
 {
-	if (!w || !w->p)
+	if (!w || !w->p || !w->p->prev)
 		return (0);
 	w->seg = init_segment(w->p, w->p->prev, (w->seg ? w->seg : 0));
 	return (1);

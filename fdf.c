@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:34:21 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/18 16:11:53 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/18 19:46:38 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,58 @@ static int				get_nbr(char *str, int id)
 	size = ft_atoi(result);
 	ft_memdel((void**)&result);
 	return (size);
+}
+
+static int				make_grille(t_map *m, t_world *w)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	if (!w || !m)
+		return (0);
+	while (y < m->sizey)
+	{
+		while (x < m->sizex)
+		{
+			if (x < m->sizex - 1)
+				w->seg = init_segment(m->p[y][x], m->p[y][x + 1], w->seg);
+			if (y < m->sizey - 1)
+				w->seg = init_segment(m->p[y][x], m->p[y + 1][x], w->seg);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	return (1);
+}
+
+int						map_to_world(t_map *m, t_world *w)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	if (!w || !m)
+		return (0);
+	m->p = (t_point***)ft_memalloc(sizeof(t_point**) * m->sizey);
+	while (y < m->sizey)
+	{
+		m->p[y] = (t_point**)ft_memalloc(sizeof(t_point*) * m->sizex);
+		while (x < m->sizex)
+		{
+			add_point(w, (double)y, (double)m->dots[y][x] / 5, (double)x);
+			m->p[y][x] = (t_point*)ft_memalloc(sizeof(t_point));
+			m->p[y][x] = w->p;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	make_grille(m, w);
+	return (1);
 }
 
 t_map					*init_map(char *path)

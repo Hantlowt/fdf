@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:54 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/18 13:18:01 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/18 19:32:38 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 
 typedef struct	s_map
 {
-	int		sizex;
-	int		sizey;
-	int		**dots;
-	t_world	*w;
+	int			sizex;
+	int			sizey;
+	int			**dots;
+	t_point		***p;
 }				t_map;
 
 t_map			*init_map(char *path);
+int				map_to_world(t_map *m, t_world *w);
 
 #endif
