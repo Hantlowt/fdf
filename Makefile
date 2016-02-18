@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/19 15:42:18 by alhote            #+#    #+#              #
-#    Updated: 2016/02/16 17:28:28 by alhote           ###   ########.fr        #
+#    Updated: 2016/02/18 13:23:45 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ $(NAME): $(OBJECTS)
 	@make -C libft/
 	@make -C draw/
 	@echo "Compiling.."
-	@clang $(CFLAGS) -Llibft/ -lft -lm -lmlx -framework OpenGL -framework AppKit draw/draw.a $(OBJECTS) -o $(NAME)
+	@clang $(CFLAGS) $(OBJECTS) -Llibft/ -lft -lm -lmlx -framework OpenGL -framework AppKit draw/draw.a -o $(NAME)
 
 %.o: %.c
 	@gcc $(CFLAGS) $(INC_DIR) -c $<

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/08 12:09:54 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/18 13:18:01 by alhote           ###   ########.fr       */
+/*   Created: 2016/02/18 12:59:40 by alhote            #+#    #+#             */
+/*   Updated: 2016/02/18 13:00:08 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include "libft.h"
-# include "draw.h"
+#include "libft.h"
 
-typedef struct	s_map
+void				*ft_realloc(void *ptr, size_t size)
 {
-	int		sizex;
-	int		sizey;
-	int		**dots;
-	t_world	*w;
-}				t_map;
+	void			*dup;
 
-t_map			*init_map(char *path);
-
-#endif
+	dup = ft_memalloc(size);
+	if (ptr)
+	{
+		if (dup)
+			ft_memcpy(dup, ptr, size);
+		ft_memdel(&ptr);
+	}
+	return (dup);
+}

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:21:00 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/16 17:19:10 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/18 16:21:25 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,21 @@ int				update_world_projection(t_world *w)
 int				draw_world(t_world *w)
 {
 	t_segment	*s;
+	t_point		*p;
 
 	if (!w || !w->seg)
 		return (0);
 	s = w->seg;
+	p = w->p;
 	while (s)
 	{
 		draw_segment(s, w);
 		s = s->prev;
+	}
+	while (p)
+	{
+		draw_point(p, w);
+		p = p->prev;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/16 17:22:52 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/18 16:15:05 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "mlx.h"
 #include "libft.h"
 #include "draw.h"
+#include "fdf.h"
 
 int				key(int keycode, void *param)
 {
@@ -66,7 +67,23 @@ int				loop_hook(void *param)
 int				main(void)
 {
 	t_world	*w;
+	t_map	*map;
+	int x = 0;
+	int y = 0;
 
+	map = init_map("42.fdf");
+	while (y < map->sizey)
+	{
+		while (x < map->sizex)
+		{
+			ft_putnbr(map->dots[y][x]);
+			ft_putchar(' ');
+			x++;
+		}
+		ft_putendl("");
+		x = 0;
+		y++;
+	}
 	w = init_world(1920, 1080, mlx_init(), 0);
 	w->win = mlx_new_window(w->mlx, w->sx, w->sy, "FdF");
 	mlx_key_hook(w->win, key, w);
