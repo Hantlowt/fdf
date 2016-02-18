@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:34:21 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/18 19:46:38 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/18 22:42:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int				count_char(char *str, char c)
 	i = 0;
 	while (*str)
 	{
-		if (*str == c)
+		if (*str == c && *(str + 1) != c)
 			++i;
 		str++;
 	}
@@ -40,13 +40,13 @@ static int				get_nbr(char *str, int id)
 	result = 0;
 	while (id > 0)
 	{
-		while (*str != ' ' && *str)
+		while ((*str != ' ' || *(str + 1) == ' ') && *str)
 			str++;
 		str++;
 		id--;
 	}
 	ptr = str;
-	while (*str != ' ' && *str)
+	while ((*str != ' ' || *(str + 1) == ' ') && *str)
 	{
 		++size;
 		str++;

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/18 18:27:00 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/19 00:00:42 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,16 @@ int				key(int keycode, void *param)
 	if (keycode == 125)
 		w->cam->y3d = (w->cam->y3d - 0.5);
 	if (keycode == 13)
-		w->cam->z3d = (w->cam->z3d + 0.5);
+		cam_move_forward(w->cam, 1.0);
+		//w->cam->z3d = (w->cam->z3d + 0.5);
 	if (keycode == 1)
 		w->cam->z3d = (w->cam->z3d - 0.5);
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 65361 || keycode == 2)
-		rotate(w, 0.0, 1.0, 0.0);
+		w->cam->pany = (w->cam->pany - 1.5);
+	if (keycode == 0)
+		w->cam->pany = (w->cam->pany + 1.5);
 		//w->cam->x3d = (w->cam->x3d - 0.5);
 	if (keycode == 65363)
 		w->cam->x3d = (w->cam->x3d + 0.5);
@@ -61,76 +64,27 @@ int				loop_hook(void *param)
 	t_world	*w;
 
 	w = param;
-	rotate(w, 0.0, 0.01, 0.0);
-	update_world_projection(w);
-	mlx_clear_window(w->mlx, w->win);
-	draw_world(w);
+	//rotate(w, 0.0, 0.01, 0.0);
+	//update_world_projection(w);
+	//mlx_clear_window(w->mlx, w->win);
+	//draw_world(w);
 	return (0);
 }
 
-int				main(void)
+int				main(int argc, char **argv)
 {
 	t_world	*w;
 	t_map	*map;
 
-	map = init_map("42.fdf");
+	if (argc > 1)
+		map = init_map(argv[1]);
+	else
+		map = init_map("test_maps/42.fdf");
 	w = init_world(1920, 1080, mlx_init(), 0);
 	w->win = mlx_new_window(w->mlx, w->sx, w->sy, "FdF");
 	mlx_key_hook(w->win, key, w);
 	mlx_loop_hook(w->mlx, loop_hook, w);
 	map_to_world(map, w);
-	/*add_point(w, 3.0, 3.0, 3.0);
-	add_point(w, 4.0, 3.0, 3.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0xFF0000;
-	add_point(w, 3.0, 4.0, 4.0);
-	add_point(w, 4.0, 4.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0xFF0000;
-	add_point(w, 3.0, 3.0, 4.0);
-	add_point(w, 4.0, 3.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0xFF0000;
-	add_point(w, 3.0, 3.0, 4.0);
-	add_point(w, 4.0, 3.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0xFF0000;
-	add_point(w, 3.0, 4.0, 3.0);
-	add_point(w, 4.0, 4.0, 3.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0xFF0000;
-	add_point(w, 3.0, 3.0, 3.0);
-	add_point(w, 3.0, 4.0, 3.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0x00FF00;
-	add_point(w, 4.0, 3.0, 3.0);
-	add_point(w, 4.0, 4.0, 3.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0x00FF00;
-	add_point(w, 3.0, 3.0, 4.0);
-	add_point(w, 3.0, 4.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0x00FF00;
-	add_point(w, 4.0, 3.0, 4.0);
-	add_point(w, 4.0, 4.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0x00FF00;
-	add_point(w, 3.0, 3.0, 3.0);
-	add_point(w, 3.0, 3.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0x0000FF;
-	add_point(w, 4.0, 3.0, 3.0);
-	add_point(w, 4.0, 3.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0x0000FF;
-	add_point(w, 3.0, 4.0, 3.0);
-	add_point(w, 3.0, 4.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0x0000FF;
-	add_point(w, 4.0, 4.0, 3.0);
-	add_point(w, 4.0, 4.0, 4.0);
-	add_segment_with_last_pts(w);
-	w->seg->color = 0x0000FF;*/
 	w->cam->x3d = 0.0;
 	w->cam->y3d = 0.0;
 	w->cam->z3d = -9.0;
