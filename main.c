@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 13:45:28 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/19 14:32:17 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int				loop_hook(void *param)
 	t_world	*w;
 
 	w = param;
-	rotate(w, 0.0, 10.0, 0.0);
-	update_world_projection(w);
-	mlx_clear_window(w->mlx, w->win);
-	draw_world(w);
+	//rotate(w, 0.0, 5.0, 0.0);
+	//update_world_projection(w);
+	//mlx_clear_window(w->mlx, w->win);
+	//draw_world(w);
 	return (0);
 }
 

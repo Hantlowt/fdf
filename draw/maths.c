@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/19 13:34:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 13:46:18 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/19 14:26:32 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 double	cosfd(double v)
 {
-	return (cosf(v * 3.14159265359 / 180));
+	return (cosf(v * 2 * 3.14159265359 / 256));
 }
 
 double	sinfd(double v)
 {
-	return (sinf(v * 3.14159265359 / 180));
+	return (sinf(v * 2 * 3.14159265359 / 256));
 }
 
 double	cospc(double v)
@@ -32,9 +32,9 @@ double	cospc(double v)
 		i = -1;
 		table = (double*)malloc(sizeof(double) * (256));
 		while (++i < 256)
-			table[i] = cosfd(i / 256);
+			table[i] = cosf(i * 2 * 3.14159265359 / 256);
 	}
-	return (table[(int)v / 256]);
+	return (table[(int)v % 256]);
 }
 
 double	sinpc(double v)
@@ -47,7 +47,7 @@ double	sinpc(double v)
 		i = -1;
 		table = (double*)malloc(sizeof(double) * (256));
 		while (++i < 256)
-			table[i] = sinfd(i / 256);
+			table[i] = sinf(i * 2 * 3.14159265359 / 256);
 	}
-	return (table[(int)v / 256]);
+	return (table[(int)v % 256]);
 }
