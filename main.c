@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 00:00:42 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/19 13:45:28 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int				key(int keycode, void *param)
 	w = param;
 	mlx_clear_window(w->mlx, w->win);
 	if (keycode == 123)
-		w->cam->x3d = (w->cam->x3d - 0.5);
+		w->cam->x3d = (w->cam->x3d + 1.5);
 	if (keycode == 124)
-		w->cam->x3d = (w->cam->x3d + 0.5);
+		w->cam->x3d = (w->cam->x3d - 1.5);
 	if (keycode == 126)
 		w->cam->y3d = (w->cam->y3d + 0.5);
 	if (keycode == 125)
@@ -36,13 +36,13 @@ int				key(int keycode, void *param)
 		cam_move_forward(w->cam, 1.0);
 		//w->cam->z3d = (w->cam->z3d + 0.5);
 	if (keycode == 1)
-		w->cam->z3d = (w->cam->z3d - 0.5);
+		w->cam->z3d = (w->cam->z3d - 1.5);
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 65361 || keycode == 2)
-		w->cam->pany = (w->cam->pany - 1.5);
+		w->cam->pany = (w->cam->pany - 10.5);
 	if (keycode == 0)
-		w->cam->pany = (w->cam->pany + 1.5);
+		w->cam->pany = (w->cam->pany + 10.5);
 		//w->cam->x3d = (w->cam->x3d - 0.5);
 	if (keycode == 65363)
 		w->cam->x3d = (w->cam->x3d + 0.5);
@@ -64,10 +64,10 @@ int				loop_hook(void *param)
 	t_world	*w;
 
 	w = param;
-	//rotate(w, 0.0, 0.01, 0.0);
-	//update_world_projection(w);
-	//mlx_clear_window(w->mlx, w->win);
-	//draw_world(w);
+	rotate(w, 0.0, 10.0, 0.0);
+	update_world_projection(w);
+	mlx_clear_window(w->mlx, w->win);
+	draw_world(w);
 	return (0);
 }
 

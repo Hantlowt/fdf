@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:34:21 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/18 22:42:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/19 11:58:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int						map_to_world(t_map *m, t_world *w)
 		m->p[y] = (t_point**)ft_memalloc(sizeof(t_point*) * m->sizex);
 		while (x < m->sizex)
 		{
-			add_point(w, (double)y, (double)m->dots[y][x] / 5, (double)x);
+			add_point(w, (double)x, (double)m->dots[y][x] / 5, (double)y);
 			m->p[y][x] = (t_point*)ft_memalloc(sizeof(t_point));
 			m->p[y][x] = w->p;
 			x++;

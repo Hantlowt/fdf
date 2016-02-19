@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:59:38 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 00:04:45 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/19 12:47:19 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ t_camera		*init_camera(double x, double y, double z)
 	cam->z3d = z;
 	cam->vx = 0.0;
 	cam->vy = 0.0;
-	cam->vz = 10.0;
-	cam->panx = 180.0;
+	cam->vz = -10.0;
+	cam->panx = 0.0;
 	cam->pany = 0.0;
-	cam->panz = 180.0;
+	cam->panz = 0.0;
 	cam->zoom = 90.0;
 	return (cam);
 }

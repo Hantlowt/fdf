@@ -6,13 +6,13 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 14:21:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/16 15:41:39 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/19 12:55:40 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-static void		c2(t_segment *seg, t_world *w)
+static int		c2(t_segment *seg, t_world *w)
 {
 	int	i;
 	int	cumul;
@@ -37,9 +37,10 @@ static void		c2(t_segment *seg, t_world *w)
 		safe_pixel_put(w, pos[0], pos[1], seg->color);
 		++i;
 	}
+	return (0);
 }
 
-static void		c1(t_segment *seg, t_world *w)
+static int		c1(t_segment *seg, t_world *w)
 {
 	int	i;
 	int	cumul;
@@ -64,11 +65,12 @@ static void		c1(t_segment *seg, t_world *w)
 		safe_pixel_put(w, pos[0], pos[1], seg->color);
 		++i;
 	}
+	return (0);
 }
 
 int				draw_segment(t_segment *seg, t_world *w)
 {
-	if (seg->p[0]->enable && seg->p[1]->enable)
+	if (seg->p[0]->enable || seg->p[1]->enable)
 	{
 		safe_pixel_put(w, seg->p[0]->x2d, seg->p[0]->y2d, seg->color);
 		if (fabs(seg->p[1]->x2d - seg->p[0]->x2d) >

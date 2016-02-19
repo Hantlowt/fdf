@@ -6,16 +6,18 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:52:19 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/16 15:40:05 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/19 12:18:19 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-void			safe_pixel_put(t_world *w, int x, int y, int color)
+int			safe_pixel_put(t_world *w, int x, int y, int color)
 {
-	if (x >= 0 && x <= w->sx && y >= 0 && y <= w->sy)
-		mlx_pixel_put(w->mlx, w->win, x, y, color);
+	if (x > w->sx || y > w->sy || x < 0 || y < 0)
+		return (0);
+	mlx_pixel_put(w->mlx, w->win, x, y, color);
+	return (1);
 }
 
 int				draw_point(t_point *point, t_world *w)
