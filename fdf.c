@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:34:21 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 11:58:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/23 21:14:21 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ int						map_to_world(t_map *m, t_world *w)
 		m->p[y] = (t_point**)ft_memalloc(sizeof(t_point*) * m->sizex);
 		while (x < m->sizex)
 		{
-			add_point(w, (double)x, (double)m->dots[y][x] / 5, (double)y);
+			add_point(w, (double)x, (double)m->dots[y][x], (double)y);
+			w->p->color = m->dots[y][x] * 10;
 			m->p[y][x] = (t_point*)ft_memalloc(sizeof(t_point));
 			m->p[y][x] = w->p;
 			x++;
@@ -123,10 +124,10 @@ t_map					*init_map(char *path)
 	map->sizey = 0;
 	while ((i = get_next_line(fd, &temp)))
 	{
-		if (i < 0 || (map->sizex && (count_char(temp, ' ') + 1) != map->sizex))
-			return (0);
-		else
-			map->sizex = (count_char(temp, ' ') + 1);
+		//if (i < 0 || (map->sizex && (count_char(temp, ' ') + 1) != map->sizex))
+		//	return (0);
+		//else
+		map->sizex = (count_char(temp, ' ') + 1);
 		map->sizey++;
 		i = -1;
 		map->dots = (int**)ft_realloc(map->dots, (sizeof(int*) * map->sizey));

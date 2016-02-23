@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:21:00 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 13:38:36 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/23 20:06:48 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_world			*init_world(int screen_x, int screen_y, void *mlx, void *win)
 	result->centerz = 0.0;
 	result->mlx = mlx;
 	result->win = win;
-	result->h = 0.0;
+	result->h = 0.1;
 	result->cam = init_camera(0.0, 0.0, 0.0);
 	result->p = 0;
 	result->seg = 0;

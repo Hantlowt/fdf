@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/09 14:21:15 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 14:30:19 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/23 21:01:05 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int		c2(t_segment *seg, t_world *w)
 			cumul -= fabs(seg->p[1]->y2d - seg->p[0]->y2d);
 			pos[0] += inc[0];
 		}
-		if (!safe_pixel_put(w, pos[0], pos[1], seg->color))
+		if (!safe_pixel_put(w, pos[0], pos[1], next_color(seg->p[0]->color, seg->p[1]->color, i + 1)))
 			return (0);
 		++i;
 	}
@@ -63,7 +63,7 @@ static int		c1(t_segment *seg, t_world *w)
 			cumul -= fabs(seg->p[1]->x2d - seg->p[0]->x2d);
 			pos[1] += inc[1];
 		}
-		if (!safe_pixel_put(w, pos[0], pos[1], seg->color))
+		if (!safe_pixel_put(w, pos[0], pos[1], next_color(seg->p[0]->color, seg->p[1]->color, i + 1)))
 			return (0);
 		++i;
 	}
@@ -74,7 +74,7 @@ int				draw_segment(t_segment *seg, t_world *w)
 {
 	if (seg->p[0]->enable || seg->p[1]->enable)
 	{
-		safe_pixel_put(w, seg->p[0]->x2d, seg->p[0]->y2d, seg->color);
+		safe_pixel_put(w, seg->p[0]->x2d, seg->p[0]->y2d, seg->p[0]->color);
 		if (fabs(seg->p[1]->x2d - seg->p[0]->x2d) >
 		fabs(seg->p[1]->y2d - seg->p[0]->y2d))
 		{

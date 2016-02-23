@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 14:32:17 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/23 20:17:45 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int				key(int keycode, void *param)
 		w->cam->y3d = (w->cam->y3d + 0.5);
 	if (keycode == 125)
 		w->cam->y3d = (w->cam->y3d - 0.5);
+	if (keycode == 16)
+		w->h += 0.1;
+	if (keycode == 4)
+		w->h -= 0.1;
 	if (keycode == 13)
 		cam_move_forward(w->cam, 1.0);
 		//w->cam->z3d = (w->cam->z3d + 0.5);
@@ -40,9 +44,10 @@ int				key(int keycode, void *param)
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 65361 || keycode == 2)
-		w->cam->pany = (w->cam->pany - 10.5);
+		w->cam->pany = efmod((w->cam->pany - 10.5), 360.0);
 	if (keycode == 0)
-		w->cam->pany = (w->cam->pany + 10.5);
+		w->cam->pany = efmod((w->cam->pany + 10.5), 360.0);
+	printf("%f\n", w->cam->pany);
 		//w->cam->x3d = (w->cam->x3d - 0.5);
 	if (keycode == 65363)
 		w->cam->x3d = (w->cam->x3d + 0.5);
