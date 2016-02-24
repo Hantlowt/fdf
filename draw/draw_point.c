@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:52:19 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/23 21:11:53 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/24 11:38:16 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ int				draw_point(t_point *point, t_world *w)
 	return (0);
 }
 
-int				next_color(int color, int final, int dist)
+int				next_color(int color, int final, int c, int d)
 {
 	int	r;
 	int	g;
 	int	b;
 
 	r = (color & 0xFF0000) >> 16;
-	r += ((((color & 0xFF0000) >> 16) - ((final & 0xFF0000) >> 16))) * dist;
+	r += ((((final & 0xFF0000) >> 16) - ((color & 0xFF0000) >> 16))) * (c / d);
 	g = (color & 0x00FF00) >> 8;
-	g += ((((color & 0x00FF00) >> 8) - ((final & 0x00FF00) >> 8))) * dist;
+	g += ((((final & 0x00FF00) >> 8) - ((color & 0x00FF00) >> 8))) * (c / d);
 	b = (color & 0x0000FF);
-	b += (((color & 0x0000FF) - (final & 0x0000FF))) * dist;
+	b += (((final & 0x0000FF) - (color & 0x0000FF))) * (c / d);
 	return ((r << 16) + (g << 8) + b);
 }
 
