@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:52:19 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/24 11:38:16 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/24 12:29:33 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int				next_color(int color, int final, int c, int d)
 	int	g;
 	int	b;
 
+	return (color + (final - color) * (c / d));
 	r = (color & 0xFF0000) >> 16;
 	r += ((((final & 0xFF0000) >> 16) - ((color & 0xFF0000) >> 16))) * (c / d);
 	g = (color & 0x00FF00) >> 8;

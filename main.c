@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/23 20:17:45 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/25 12:28:58 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,28 @@ int				loop_hook(void *param)
 	return (0);
 }
 
+int				mouse_motion(int x, int y, void *param)
+{
+	t_world	*w;
+	static int	*bx;
+	static int	*by;
+
+	if (!bx || !by)
+	{
+		bx = (int*)malloc(sizeof(int));
+		by = (int*)malloc(sizeof(int));
+	}
+	w = param;
+	w->cam->pany = efmod((w->cam->pany - (x - *bx) * 1 / 2), 360.0);
+	w->cam->panx = efmod((w->cam->panx - (*by - y) * 1 / 2), 360.0);
+	*bx = x;
+	*by = y;
+	update_world_projection(w);
+	mlx_clear_window(w->mlx, w->win);
+	draw_world(w);
+	return (0);
+}
+
 int				main(int argc, char **argv)
 {
 	t_world	*w;
@@ -89,6 +111,7 @@ int				main(int argc, char **argv)
 	w->win = mlx_new_window(w->mlx, w->sx, w->sy, "FdF");
 	mlx_key_hook(w->win, key, w);
 	mlx_loop_hook(w->mlx, loop_hook, w);
+	mlx_hook(w->win, 6, (1L<<6), mouse_motion, w);
 	map_to_world(map, w);
 	w->cam->x3d = 0.0;
 	w->cam->y3d = 0.0;
