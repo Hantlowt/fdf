@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:21:00 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/23 20:06:48 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/25 21:23:51 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_world			*init_world(int screen_x, int screen_y, void *mlx, void *win)
 	result->centerx = 0.0;
 	result->centery = 0.0;
 	result->centerz = 0.0;
+	result->dt = 0.0;
 	result->mlx = mlx;
 	result->win = win;
 	result->h = 0.1;

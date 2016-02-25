@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:40:12 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/24 11:39:05 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/25 21:24:41 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct	s_world
 	double		centery;
 	double		centerz;
 	double		h;
+	double		dt;
 	t_camera	*cam;
 	t_point		*p;
 	t_segment	*seg;

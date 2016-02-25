@@ -6,13 +6,14 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/25 12:28:58 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/25 22:19:11 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "mlx.h"
 #include "libft.h"
 #include "draw.h"
@@ -37,17 +38,15 @@ int				key(int keycode, void *param)
 	if (keycode == 4)
 		w->h -= 0.1;
 	if (keycode == 13)
-		cam_move_forward(w->cam, 1.0);
-		//w->cam->z3d = (w->cam->z3d + 0.5);
+		cam_move_forward(w->cam, 0.5);
 	if (keycode == 1)
-		w->cam->z3d = (w->cam->z3d - 1.5);
+		cam_move_forward(w->cam, -0.5);
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 65361 || keycode == 2)
 		w->cam->pany = efmod((w->cam->pany - 10.5), 360.0);
 	if (keycode == 0)
 		w->cam->pany = efmod((w->cam->pany + 10.5), 360.0);
-	printf("%f\n", w->cam->pany);
 		//w->cam->x3d = (w->cam->x3d - 0.5);
 	if (keycode == 65363)
 		w->cam->x3d = (w->cam->x3d + 0.5);
@@ -67,8 +66,11 @@ int				key(int keycode, void *param)
 int				loop_hook(void *param)
 {
 	t_world	*w;
+	static clock_t c;
 
 	w = param;
+	w->dt = (double)(clock() - c);
+	c = clock();
 	//rotate(w, 0.0, 5.0, 0.0);
 	//update_world_projection(w);
 	//mlx_clear_window(w->mlx, w->win);
@@ -86,6 +88,7 @@ int				mouse_motion(int x, int y, void *param)
 	{
 		bx = (int*)malloc(sizeof(int));
 		by = (int*)malloc(sizeof(int));
+		return (0);
 	}
 	w = param;
 	w->cam->pany = efmod((w->cam->pany - (x - *bx) * 1 / 2), 360.0);

@@ -6,24 +6,21 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:59:38 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/19 12:47:19 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/25 21:02:12 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-void			cam_move_forward(t_camera *cam, double speed)
+void			cam_move_forward(t_camera *c, double s)
 {
-	double	t[3];
 	double	pi;
 
 	pi = 3.14159265359;
-	t[0] = speed * (cosf(cam->panz * pi / 180) * sinf(cam->panx * pi / 180));
-	t[1] = speed * (sinf(cam->panz * pi / 180));
-	t[2] = speed * (cosf(cam->panz * pi / 180) * cosf(cam->panx * pi / 180));
-	cam->x3d += t[0];
-	cam->y3d += t[1];
-	cam->z3d += t[2];
+	c->pany = efmod(c->pany + 50.0, 360.0);
+	c->x3d -= s * (cospc(c->pany) - sinpc(c->pany));
+	c->z3d += s * (sinpc(c->pany) + cospc(c->pany));
+	c->pany = efmod(c->pany - 50.0, 360.0);
 }
 
 t_camera		*init_camera(double x, double y, double z)
