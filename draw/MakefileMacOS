@@ -5,44 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/01/19 15:42:18 by alhote            #+#    #+#              #
-#    Updated: 2016/02/26 19:03:46 by alhote           ###   ########.fr        #
+#    Created: 2016/02/08 15:54:26 by alhote            #+#    #+#              #
+#    Updated: 2016/02/19 13:36:47 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = draw.a
+SRC = draw_point.c draw_segment.c camera.c convert3dto2d.c world.c maths.c
+OBJ = $(SRC:.c=.o)
+CFLAGS = -Wall -Wextra -Werror
 
-CFLAGS       = -Wall -Wextra -Werror
-INC_DIR = -Iincludes \
-			-Ilibft/includes \
-			-Idraw \
-			-Imlx \
-
-SRCS = main.c fdf.c
-OBJECTS = $(SRCS:.c=.o)
-
-# Rules
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	@make -C libft/
-	@make -C draw/
-	@echo "Compiling.."
-	@clang $(CFLAGS) $(OBJECTS) draw/draw.a -Llibft/ -lft -lm -L/usr/local/lib -lmlx -L/usr/lib -lXext -lX11 -lm -o $(NAME)
-
-%.o: %.c
-	@gcc $(CFLAGS) $(INC_DIR) -c $<
+$(NAME): $(OBJ)
+	@echo "Compilation lib Draw"
+	@gcc $(CFLAGS) -c $(SRC)
+	@echo "Creation"
+	@ar rc $(NAME) $(OBJ)
+	@echo "Indexation"
+	@ranlib $(NAME)
 
 clean:
-	@make -C libft/ clean
-	@make -C draw/ clean
-	@rm -rf *.o
-	@echo "Clean"
+	@echo "suppression des objets ..."
+	@rm -f $(OBJ)
 
 fclean: clean
-	@make -C libft/ fclean
-	@make -C draw/ fclean
+	@echo "suppression de la librairie ..."
 	@rm -f $(NAME)
-	@echo "Fclean"
 
 re: fclean all

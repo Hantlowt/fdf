@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/25 22:19:11 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/27 18:23:20 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,24 @@ int				key(int keycode, void *param)
 
 	w = param;
 	mlx_clear_window(w->mlx, w->win);
-	if (keycode == 123)
-		w->cam->x3d = (w->cam->x3d + 1.5);
-	if (keycode == 124)
-		w->cam->x3d = (w->cam->x3d - 1.5);
+	if (keycode == 123 || keycode == 100)
+		cam_move_lateral(w->cam, 0.5);
+	if (keycode == 124 || keycode == 113)
+		cam_move_lateral(w->cam, -0.5);
 	if (keycode == 126)
 		w->cam->y3d = (w->cam->y3d + 0.5);
 	if (keycode == 125)
 		w->cam->y3d = (w->cam->y3d - 0.5);
-	if (keycode == 16)
+	if (keycode == 16 || keycode == 121)
 		w->h += 0.1;
-	if (keycode == 4)
+	if (keycode == 4 || keycode == 104)
 		w->h -= 0.1;
-	if (keycode == 13)
+	if (keycode == 13 || keycode == 122)
 		cam_move_forward(w->cam, 0.5);
-	if (keycode == 1)
+	if (keycode == 1 || keycode == 115)
 		cam_move_forward(w->cam, -0.5);
 	if (keycode == 53)
 		exit(0);
-	if (keycode == 65361 || keycode == 2)
-		w->cam->pany = efmod((w->cam->pany - 10.5), 360.0);
-	if (keycode == 0)
-		w->cam->pany = efmod((w->cam->pany + 10.5), 360.0);
-		//w->cam->x3d = (w->cam->x3d - 0.5);
-	if (keycode == 65363)
-		w->cam->x3d = (w->cam->x3d + 0.5);
 	if (keycode == 65362)
 		w->cam->y3d = (w->cam->y3d + 0.5);
 	if (keycode == 65364)
@@ -69,7 +62,7 @@ int				loop_hook(void *param)
 	static clock_t c;
 
 	w = param;
-	w->dt = (double)(clock() - c);
+	w->dt = (double)(clock() - c) / CLOCKS_PER_SEC;
 	c = clock();
 	//rotate(w, 0.0, 5.0, 0.0);
 	//update_world_projection(w);
@@ -110,7 +103,7 @@ int				main(int argc, char **argv)
 		map = init_map(argv[1]);
 	else
 		map = init_map("test_maps/42.fdf");
-	w = init_world(1920, 1080, mlx_init(), 0);
+	w = init_world(1920/2, 1080/2, mlx_init(), 0);
 	w->win = mlx_new_window(w->mlx, w->sx, w->sy, "FdF");
 	mlx_key_hook(w->win, key, w);
 	mlx_loop_hook(w->mlx, loop_hook, w);
@@ -120,6 +113,7 @@ int				main(int argc, char **argv)
 	w->cam->y3d = 0.0;
 	w->cam->z3d = -9.0;
 	update_world_projection(w);
+	draw_world(w);
 	mlx_loop(w->mlx);
 	return (0);
 }

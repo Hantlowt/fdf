@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:40:12 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/25 21:24:41 by alhote           ###   ########.fr       */
+/*   Updated: 2016/02/26 19:19:41 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ int				draw_surface(t_point *point, void *mlx, void *win);
 t_surface		*init_surface(int x, int y);
 t_camera		*init_camera(double x, double y, double z);
 int				project3dto2d_point(t_point *p, t_camera *cam, t_world *w);
-void			cam_move_forward(t_camera *cam, double speed);
+void			cam_move_forward(t_camera *cam, double s);
+void			cam_move_lateral(t_camera *c, double s);
 int				safe_pixel_put(t_world *w, int x, int y, int color);
 int				rotate(t_world *w, double rx, double ry, double rz);
 int				next_color(int color, int final, int c, int d);

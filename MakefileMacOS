@@ -6,17 +6,15 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/19 15:42:18 by alhote            #+#    #+#              #
-#    Updated: 2016/02/26 19:03:46 by alhote           ###   ########.fr        #
+#    Updated: 2016/02/18 13:23:45 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 CFLAGS       = -Wall -Wextra -Werror
-INC_DIR = -Iincludes \
-			-Ilibft/includes \
+INC_DIR = -Ilibft/includes \
 			-Idraw \
-			-Imlx \
 
 SRCS = main.c fdf.c
 OBJECTS = $(SRCS:.c=.o)
@@ -28,7 +26,7 @@ $(NAME): $(OBJECTS)
 	@make -C libft/
 	@make -C draw/
 	@echo "Compiling.."
-	@clang $(CFLAGS) $(OBJECTS) draw/draw.a -Llibft/ -lft -lm -L/usr/local/lib -lmlx -L/usr/lib -lXext -lX11 -lm -o $(NAME)
+	@clang $(CFLAGS) $(OBJECTS) -Llibft/ -lft -lm -lmlx -framework OpenGL -framework AppKit draw/draw.a -o $(NAME)
 
 %.o: %.c
 	@gcc $(CFLAGS) $(INC_DIR) -c $<
