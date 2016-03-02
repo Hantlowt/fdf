@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/08 15:54:26 by alhote            #+#    #+#              #
-#    Updated: 2016/02/26 19:03:14 by alhote           ###   ########.fr        #
+#    Updated: 2016/03/02 14:10:04 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Compilation lib Draw"
-	@gcc $(CFLAGS) -c $(SRC) -L/usr/local/lib -L/usr/lib -lXext -lX11 -lm
+	@gcc $(CFLAGS) -c $(SRC)
 	@echo "Creation"
 	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
 	@echo "Indexation"
 	@ranlib $(NAME)
 

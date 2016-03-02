@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:34:21 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/26 19:05:00 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/02 15:55:13 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int						map_to_world(t_map *m, t_world *w)
 		{
 			add_point(w, (double)x, (double)m->dots[y][x], (double)y);
 			w->p->color = 0x005e38;
-			w->p->color += (m->dots[y][x] >= 0 ? m->dots[y][x] : -m->dots[y][x]);
+			w->p->color += m->dots[y][x];
 			m->p[y][x] = (t_point*)ft_memalloc(sizeof(t_point));
 			m->p[y][x] = w->p;
 			++x;
@@ -125,9 +125,8 @@ t_map					*init_map(char *path)
 	map->sizey = 0;
 	while ((i = get_next_line(fd, &temp)))
 	{
-		//if (i < 0 || (map->sizex && (count_char(temp, ' ') + 1) != map->sizex))
-		//	return (0);
-		//else
+		if (i < 0)
+			return (0);
 		map->sizex = (count_char(temp, ' ') + 1);
 		map->sizey++;
 		i = -1;

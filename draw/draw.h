@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:40:12 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/26 19:19:41 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/02 14:57:29 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_camera
 	double	pany;
 	double	panz;
 	double	zoom;
+	double	s;
 }				t_camera;
 
 typedef struct	s_world

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 14:59:38 by alhote            #+#    #+#             */
-/*   Updated: 2016/02/26 19:20:49 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/02 14:57:16 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ t_camera		*init_camera(double x, double y, double z)
 	cam->pany = 0.0;
 	cam->panz = 0.0;
 	cam->zoom = 90.0;
+	cam->s = 0.5;
 	return (cam);
 }
