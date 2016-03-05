@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/04 18:48:38 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 16:35:30 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int				main(int argc, char **argv)
 	t_map	*map;
 
 	map = 0;
+	w = init_world(1920, 1080, mlx_init(), 0);
+	w->win = mlx_new_window(w->mlx, w->sx, w->sy, "FdF");
 	if (argc == 2)
-		map = init_map(argv[1]);
+		map = init_map(argv[1], w);
 	if (map && argc == 2)
 	{
-		w = init_world(1920, 1080, mlx_init(), 0);
-		w->win = mlx_new_window(w->mlx, w->sx, w->sy, "FdF");
 		mlx_hook(w->win, 6, (1L << 6), mouse_motion, w);
 		mlx_hook(w->win, 2, (1L << 0), key, w);
-		map_to_world(map, w);
+		//map_to_world(map, w);
 		w->cam->x3d = 0.0;
 		w->cam->y3d = 0.0;
 		w->cam->z3d = -9.0;

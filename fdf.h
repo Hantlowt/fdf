@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:54 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/04 18:27:50 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 16:36:41 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct	s_map
 	t_point		***p;
 }				t_map;
 
-t_map			*init_map(char *path);
+t_map			*init_map(char *path, t_world *w);
 int				map_to_world(t_map *m, t_world *w);
 int				mouse_motion(int x, int y, void *param);
 int				key(int keycode, void *param);

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:21:00 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/04 15:29:59 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 16:42:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				draw_world(t_world *w)
 	t_segment	*s;
 	t_point		*p;
 
-	if (!w || !w->seg)
+	if (!w)
 		return (0);
 	s = w->seg;
 	p = w->p;

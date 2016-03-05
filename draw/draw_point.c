@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:52:19 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/04 22:15:20 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 16:38:55 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ t_point			*init_point(double x, double y, double z, t_point *prev)
 	point->y3d = y;
 	point->z3d = z;
 	point->enable = 0;
-	point->color = 0x005e38;
+	//point->color = 0x005e38;
+	point->color = 0xFFFFFF;
 	point->next = 0;
 	point->prev = prev;
 	if (prev)

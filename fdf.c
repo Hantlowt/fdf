@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:34:21 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/05 02:20:51 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 17:39:05 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <fcntl.h>
 #include "libft.h"
 
-static int				count_char(char *str, char c)
+/*static int				count_char(char *str, char c)
 {
 	int	i;
 
@@ -56,7 +56,7 @@ static int				get_nbr(char *str, int id)
 	size = ft_atoi(result);
 	ft_memdel((void**)&result);
 	return (size);
-}
+}*/
 
 static int				make_grille(t_map *m, t_world *w)
 {
@@ -71,9 +71,9 @@ static int				make_grille(t_map *m, t_world *w)
 	{
 		while (x < m->sizex)
 		{
-			if (x < m->sizex - 1)
+			if (x < m->dots[y][0])
 				w->seg = init_segment(m->p[y][x], m->p[y][x + 1], w->seg);
-			if (y < m->sizey - 1)
+			if (y < m->sizey - 1 && m->dots[y + 1][0] >= m->dots[y][0])
 				w->seg = init_segment(m->p[y][x], m->p[y + 1][x], w->seg);
 			x++;
 		}
@@ -96,11 +96,11 @@ int						map_to_world(t_map *m, t_world *w)
 	while (y < m->sizey)
 	{
 		m->p[y] = (t_point**)ft_memalloc(sizeof(t_point*) * m->sizex);
-		while (x < m->sizex)
+		while (x < m->dots[y][0])
 		{
-			m->sizez = (m->dots[y][x] > m->sizez ? m->dots[y][x] : m->sizez);
-			add_point(w, (double)x, (double)m->dots[y][x], (double)y);
-			w->p->color += (m->dots[y][x] * 5) % 255;
+			m->sizez = (m->dots[y][x + 1] > m->sizez ? m->dots[y][x + 1] : m->sizez);
+			add_point(w, (double)x, (double)m->dots[y][x + 1], (double)y);
+			w->p->color += (m->dots[y][x + 1] * 5) % 255;
 			m->p[y][x] = (t_point*)ft_memalloc(sizeof(t_point));
 			m->p[y][x] = w->p;
 			++x;
@@ -112,7 +112,18 @@ int						map_to_world(t_map *m, t_world *w)
 	return (1);
 }
 
-t_map					*init_map(char *path)
+static int	ft_wordnbr(char const *s, char c)
+{
+	int	words;
+
+	words = 0;
+	while (*++s)
+		if (*s != c && (*(s + 1) == c || !*(s + 1)))
+			words++;
+	return (words);
+}
+
+t_map					*init_map(char *path, t_world *w)
 {
 	int		fd;
 	t_map	*map;
@@ -128,15 +139,11 @@ t_map					*init_map(char *path)
 	{
 		if (i < 0)
 			return (0);
-		if ((count_char(temp, ' ') + 1) > map->sizex)
-			map->sizex = (count_char(temp, ' ') + 1);
-		if ((count_char(temp, ' ')) > 0)
-			map->sizey++;
 		i = -1;
-		map->dots = (int**)ft_realloc(map->dots, (sizeof(int*) * map->sizey));
-		map->dots[map->sizey - 1] = (int*)ft_memalloc(sizeof(int) * map->sizex);
-		while (++i < (count_char(temp, ' ') + 1))
-			map->dots[map->sizey - 1][i] = get_nbr(temp, i);
+		temp = ft_strtrim(temp);
+		while (++i <= ft_wordnbr(temp, ' '))
+			add_point(w, (double)i, (double)ft_atoi(ft_strsplit(temp, ' ')[i]), (double)map->sizey);
+		map->sizey++;
 	}
-	return (map->sizex ? map : 0);
+	return (map->sizey - 1 ? map : 0);
 }
