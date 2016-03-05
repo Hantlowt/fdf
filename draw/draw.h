@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:40:12 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/04 18:59:36 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 21:23:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	s_world
 	void		*win;
 	int			sx;
 	int			sy;
+	int			draw_seg:1;
 	double		centerx;
 	double		centery;
 	double		centerz;
@@ -76,7 +77,7 @@ typedef struct	s_world
 }				t_world;
 
 t_world			*init_world(int screen_x, int screen_y, void *mlx, void *win);
-int				add_point(t_world *w, double x, double y, double z);
+t_point			*add_point(t_world *w, double x, double y, double z);
 int				add_segment_with_last_pts(t_world *w);
 int				update_world_projection(t_world *w);
 int				draw_world(t_world *w);

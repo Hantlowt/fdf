@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 10:21:00 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/05 16:42:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 21:29:39 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_world			*init_world(int screen_x, int screen_y, void *mlx, void *win)
 	result = (t_world*)malloc(sizeof(t_world));
 	result->sx = screen_x;
 	result->sy = screen_y;
+	result->draw_seg = 1;
 	result->centerx = 0.0;
 	result->centery = 0.0;
 	result->centerz = 0.0;
@@ -32,12 +33,12 @@ t_world			*init_world(int screen_x, int screen_y, void *mlx, void *win)
 	return (result);
 }
 
-int				add_point(t_world *w, double x, double y, double z)
+t_point			*add_point(t_world *w, double x, double y, double z)
 {
 	if (!w)
 		return (0);
 	w->p = init_point(x, y, z, (w->p ? w->p : 0));
-	return (1);
+	return (w->p);
 }
 
 int				add_segment_with_last_pts(t_world *w)
@@ -74,7 +75,8 @@ int				draw_world(t_world *w)
 	p = w->p;
 	while (s)
 	{
-		draw_segment(s, w);
+		if (w->draw_seg)
+			draw_segment(s, w);
 		s = s->prev;
 	}
 	while (p)

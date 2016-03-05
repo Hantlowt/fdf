@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/05 16:35:30 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 21:21:05 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int				main(int argc, char **argv)
 	{
 		mlx_hook(w->win, 6, (1L << 6), mouse_motion, w);
 		mlx_hook(w->win, 2, (1L << 0), key, w);
-		//map_to_world(map, w);
 		w->cam->x3d = 0.0;
 		w->cam->y3d = 0.0;
 		w->cam->z3d = -9.0;
