@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:52:19 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/05 21:39:26 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 22:05:37 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				safe_pixel_put(t_world *w, int x, int y, int color)
 int				draw_point(t_point *point, t_world *w)
 {
 	if (point->enable)
-		safe_pixel_put(w, (int)point->x2d, (int)point->y2d, point->color);
+		safe_pixel_put(w, (int)point->x2d, (int)point->y2d, 0xFFFFFF);
 	return (0);
 }
 
