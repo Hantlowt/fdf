@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/19 15:42:18 by alhote            #+#    #+#              #
-#    Updated: 2016/03/02 15:24:19 by alhote           ###   ########.fr        #
+#    Updated: 2016/03/04 15:58:54 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,13 @@ INC_DIR = -Ilibft/includes \
 SRCS = main.c fdf.c controller.c
 OBJECTS = $(SRCS:.c=.o)
 
-# Rules
-all: $(NAME)
+all: lib $(NAME)
+
+lib:
+	make -C libft/
+	make -C draw/
 
 $(NAME): $(OBJECTS)
-	@make -C libft/
-	@make -C draw/
 	@echo "Compiling.."
 	@clang $(CFLAGS) $(OBJECTS) -Llibft/ -lft -lm -lmlx -framework OpenGL -framework AppKit draw/draw.a -o $(NAME)
 

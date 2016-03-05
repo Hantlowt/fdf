@@ -6,13 +6,14 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 15:22:09 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/02 15:32:49 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/04 21:07:43 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
-static void		move_cam(int keycode, t_camera *cam)
+static void		move_cam(int keycode, t_camera *cam, t_map *map)
 {
 	if (keycode == 2 || keycode == 100)
 		cam_move_lateral(cam, cam->s);
@@ -26,6 +27,12 @@ static void		move_cam(int keycode, t_camera *cam)
 		cam->y3d = (cam->y3d + cam->s);
 	if (keycode == 12)
 		cam->y3d = (cam->y3d - cam->s);
+	if (keycode == 91)
+	{
+		set_cam_pos(cam, map->sizex, map->sizez + 5, map->sizey * 1.5);
+		set_cam_rot(cam, 90.0 - 30, 180.0 + 30, 0.0);
+	}
+	printf("%d \n", keycode);
 }
 
 int				key(int keycode, void *param)
@@ -33,7 +40,7 @@ int				key(int keycode, void *param)
 	t_world			*w;
 
 	w = param;
-	move_cam(keycode, w->cam);
+	move_cam(keycode, w->cam, w->pa);
 	if (keycode == 16 || keycode == 121)
 		w->h += 0.1;
 	if (keycode == 4 || keycode == 104)
@@ -56,6 +63,8 @@ int				mouse_motion(int x, int y, void *param)
 	{
 		bx = (int*)malloc(sizeof(int));
 		by = (int*)malloc(sizeof(int));
+		*bx = x;
+		*by = y;
 	}
 	w = param;
 	w->cam->pany = efmod((w->cam->pany - (x - *bx) * 1 / 2), 360.0);

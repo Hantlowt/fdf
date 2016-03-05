@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:34:21 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/02 17:44:06 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/05 02:20:51 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int						map_to_world(t_map *m, t_world *w)
 		m->p[y] = (t_point**)ft_memalloc(sizeof(t_point*) * m->sizex);
 		while (x < m->sizex)
 		{
+			m->sizez = (m->dots[y][x] > m->sizez ? m->dots[y][x] : m->sizez);
 			add_point(w, (double)x, (double)m->dots[y][x], (double)y);
-			w->p->color = 0x005e38;
-			//w->p->color += m->dots[y][x];
+			w->p->color += (m->dots[y][x] * 5) % 255;
 			m->p[y][x] = (t_point*)ft_memalloc(sizeof(t_point));
 			m->p[y][x] = w->p;
 			++x;
@@ -123,17 +123,20 @@ t_map					*init_map(char *path)
 	map = (t_map*)ft_memalloc(sizeof(t_map));
 	map->sizex = 0;
 	map->sizey = 0;
+	map->sizez = 0;
 	while ((i = get_next_line(fd, &temp)))
 	{
 		if (i < 0)
 			return (0);
-		map->sizex = (count_char(temp, ' ') + 1);
-		map->sizey++;
+		if ((count_char(temp, ' ') + 1) > map->sizex)
+			map->sizex = (count_char(temp, ' ') + 1);
+		if ((count_char(temp, ' ')) > 0)
+			map->sizey++;
 		i = -1;
 		map->dots = (int**)ft_realloc(map->dots, (sizeof(int*) * map->sizey));
 		map->dots[map->sizey - 1] = (int*)ft_memalloc(sizeof(int) * map->sizex);
-		while (++i < map->sizex)
+		while (++i < (count_char(temp, ' ') + 1))
 			map->dots[map->sizey - 1][i] = get_nbr(temp, i);
 	}
-	return (map);
+	return (map->sizex ? map : 0);
 }

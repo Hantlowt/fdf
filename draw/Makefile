@@ -6,12 +6,14 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/08 15:54:26 by alhote            #+#    #+#              #
-#    Updated: 2016/03/02 14:10:04 by alhote           ###   ########.fr        #
+#    Updated: 2016/03/04 15:30:25 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = draw.a
-SRC = draw_point.c draw_segment.c camera.c convert3dto2d.c world.c maths.c
+SRC = draw_point.c draw_segment.c camera.c convert3dto2d.c world.c maths.c\
+		rotation.c\
+
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 

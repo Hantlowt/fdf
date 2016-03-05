@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/02 15:42:43 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/04 18:48:38 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "mlx.h"
+#include <mlx.h>
 #include "libft.h"
 #include "draw.h"
 #include "fdf.h"
@@ -37,6 +37,7 @@ int				main(int argc, char **argv)
 		w->cam->x3d = 0.0;
 		w->cam->y3d = 0.0;
 		w->cam->z3d = -9.0;
+		w->pa = map;
 		update_world_projection(w);
 		draw_world(w);
 		mlx_loop(w->mlx);

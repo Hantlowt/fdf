@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:54 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/02 15:23:39 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/04 18:27:50 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct	s_map
 {
 	int			sizex;
 	int			sizey;
+	int			sizez;
 	int			**dots;
 	t_point		***p;
 }				t_map;

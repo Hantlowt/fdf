@@ -6,13 +6,13 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 15:40:12 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/02 14:57:29 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/04 18:59:36 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
-# include "mlx.h"
+# include <mlx.h>
 # include "math.h"
 # include <stdlib.h>
 
@@ -72,6 +72,7 @@ typedef struct	s_world
 	t_camera	*cam;
 	t_point		*p;
 	t_segment	*seg;
+	void		*pa;
 }				t_world;
 
 t_world			*init_world(int screen_x, int screen_y, void *mlx, void *win);
@@ -89,6 +90,8 @@ t_camera		*init_camera(double x, double y, double z);
 int				project3dto2d_point(t_point *p, t_camera *cam, t_world *w);
 void			cam_move_forward(t_camera *cam, double s);
 void			cam_move_lateral(t_camera *c, double s);
+void			set_cam_pos(t_camera *c, double x, double y, double z);
+void			set_cam_rot(t_camera *c, double x, double y, double z);
 int				safe_pixel_put(t_world *w, int x, int y, int color);
 int				rotate(t_world *w, double rx, double ry, double rz);
 int				next_color(int color, int final, int c, int d);
