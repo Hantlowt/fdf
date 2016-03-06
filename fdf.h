@@ -6,14 +6,17 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:54 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/05 20:29:40 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/06 19:44:26 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include "libft.h"
 # include "draw.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include "libft.h"
 
 typedef struct	s_map
 {

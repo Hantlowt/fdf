@@ -6,14 +6,12 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 12:09:59 by alhote            #+#    #+#             */
-/*   Updated: 2016/03/05 21:21:05 by alhote           ###   ########.fr       */
+/*   Updated: 2016/03/06 19:43:11 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
 #include <mlx.h>
 #include "libft.h"
 #include "draw.h"
